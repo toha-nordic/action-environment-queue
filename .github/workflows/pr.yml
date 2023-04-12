@@ -7,7 +7,7 @@ jobs:
   test-code:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: |
           npm install
       - run: |
@@ -20,7 +20,7 @@ jobs:
             exit 1
           fi
         id: diff
-      # If index.js was different than expected, upload the expected version as an artifact
+      # If index.js was different from expected, upload the expected version as an artifact
       - uses: actions/upload-artifact@v2
         if: ${{ failure() && steps.diff.conclusion == 'failure' }}
         with:
